@@ -14,14 +14,15 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
      localizationsDelegates: AppLocalizations.localizationsDelegates,
-  supportedLocales: AppLocalizations.supportedLocales,
+     supportedLocales: AppLocalizations.supportedLocales,
       debugShowCheckedModeBanner: false,
      // locale: ,
      // theme:Mythemedata.lightTheme,
-       //initialRoute: Homescreen.routeName,
+      initialRoute: Homescreen.routeName,
       routes: {
-        //  Homescreen.routeName:(context)=>Homescreen(),
+         Homescreen.routeName:(context)=> Homescreen(),
       },
+      theme:Mythemedata.LightTheme,
     );
   }
 }
