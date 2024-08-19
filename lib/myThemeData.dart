@@ -3,7 +3,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:news/appColors.dart';
 
 class Mythemedata {
-  static  final ThemeData LightTheme = ThemeData(
+  static final ThemeData LightTheme = ThemeData(
       primaryColor: Appcolors.primaryColor,
       appBarTheme: AppBarTheme(
           backgroundColor: Appcolors.primaryColor,

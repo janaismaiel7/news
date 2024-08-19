@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:news/Home/homeScreen.dart';
 
 class Splashscreen extends StatefulWidget {
-static const String routeName ='splashScreen';
+  static const String routeName = 'splashScreen';
 
   @override
   State<Splashscreen> createState() => _SplashscreenState();
@@ -12,20 +12,20 @@ static const String routeName ='splashScreen';
 
 class _SplashscreenState extends State<Splashscreen> {
   @override
-  void initState(){
+  void initState() {
     super.initState();
-    Timer(Duration(seconds: 5),(){
-      Navigator.of(context).pushReplacement(MaterialPageRoute(
-        builder: (context)=>Homescreen()));
+    Timer(Duration(seconds: 5), () {
+      Navigator.of(context).pushReplacement(
+          MaterialPageRoute(builder: (context) => Homescreen()));
     });
   }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-     body: Center(
-      child: Image.asset('assets/images/splash.png'),
-     ),
-
+      body: Center(
+        child: Image.asset('assets/images/splash.png'),
+      ),
     );
   }
 }
