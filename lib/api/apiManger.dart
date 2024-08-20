@@ -7,11 +7,12 @@ import 'package:news/model/source_response/source_response.dart';
 
 
 class Apimanger {
-  static Future<SourceResponse?> getSources() async {
+  static Future<SourceResponse?> getSources(String categoryId) async {
     try {
       // Build the URL with the base URL and parameters
       Uri url = Uri.https(Apiconstants.baseUrl, Apiconstants.SourceApi,
-          {'apiKey': '0fcf3512df954f2788c6953ef9b45e41'});
+          {'apiKey': '0fcf3512df954f2788c6953ef9b45e41',
+          'category':categoryId});
 
       // Send the HTTP GET request
       var response = await http.get(url);

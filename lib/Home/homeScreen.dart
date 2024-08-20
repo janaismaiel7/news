@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:news/Home/Settings.dart/SettingsTab.dart';
 import 'package:news/Home/categories.dart/categoryDetails.dart';
 import 'package:news/Home/categories.dart/categoryFragment.dart';
-import 'package:news/Home/tabs/tabsWidget.dart';
-import 'package:news/api/apiManger.dart';
+import 'package:news/Home/drawer/homeDrawer.dart';
 import 'package:news/appColors.dart';
-import 'package:news/model/source_response/source_response.dart';
+import 'package:news/model/category.dart';
 
 class Homescreen extends StatefulWidget {
   static const String routeName = 'homeScreen';
@@ -15,6 +15,9 @@ class Homescreen extends StatefulWidget {
 }
 
 class _HomescreenState extends State<Homescreen> {
+  Categoryy? selectedCategory;
+  int selectedMenuIteam = Homedrawer.categories;
+
   @override
   Widget build(BuildContext context) {
     return Stack(
@@ -29,16 +32,40 @@ class _HomescreenState extends State<Homescreen> {
           ),
         ),
         Scaffold(
-            backgroundColor: Colors.transparent,
-            appBar: AppBar(
-              title: Text(
-                'News App',
-                style: Theme.of(context).textTheme.titleLarge,
-              ),
+          backgroundColor: Colors.transparent,
+          appBar: AppBar(
+            title: Text(
+              selectedMenuIteam == Homedrawer.settings
+                  ? 'Settings'
+                  : selectedCategory == null
+                      ? 'News App'
+                      : selectedCategory!.title,
+              style: Theme.of(context).textTheme.titleLarge,
             ),
-            body:categoryfargment()
-          )
+          ),
+          drawer: Drawer(
+            child: Homedrawer(onSideMenuClick: onSideMenuClick),
+          ),
+          body: selectedMenuIteam == Homedrawer.settings
+              ? Settingstab()
+              : selectedCategory == null
+                  ? categoryfargment(onCategoryIteamClick: onCategoryIteamClick)
+                  : Categorydetails(categoryy: selectedCategory!),
+        ),
       ],
     );
+  }
+
+  void onCategoryIteamClick(Categoryy newCategory) {
+    selectedCategory = newCategory;
+    selectedMenuIteam = Homedrawer.categories; 
+    setState(() {});
+  }
+
+  void onSideMenuClick(int newSIdeMEnuIteam) {
+    selectedMenuIteam = newSIdeMEnuIteam;
+    selectedCategory = null;
+    Navigator.pop(context); 
+    setState(() {});
   }
 }

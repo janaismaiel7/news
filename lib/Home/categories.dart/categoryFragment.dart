@@ -4,6 +4,8 @@ import 'package:news/model/category.dart';
 
 class categoryfargment extends StatelessWidget {
  var categoriesList = Categoryy.getCategories();
+ Function onCategoryIteamClick;
+ categoryfargment({required this.onCategoryIteamClick});
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -24,8 +26,16 @@ class categoryfargment extends StatelessWidget {
                 crossAxisSpacing: 10,
               ),
               itemBuilder: (context, index) {
-                return Categoryiteam(category: categoriesList[index], 
-                index: index);
+                return Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: InkWell(
+                    onTap: () {
+                      onCategoryIteamClick(categoriesList[index]);
+                    },
+                    child: Categoryiteam(category: categoriesList[index], 
+                    index: index),
+                  ),
+                );
               },
               itemCount: categoriesList.length,
               
