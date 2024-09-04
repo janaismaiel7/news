@@ -4,10 +4,10 @@ import 'package:news/reposatiry/news/newsDataSource.dart';
 
 class Newsremotedatsourceimpi implements newsRemoteDataSource {
   Apimanger apimanger;
-  Newsremotedatsourceimpi({required this.apimanger});
+  Newsremotedatsourceimpi({required this.apimanger}); //constructor injection
   @override
   Future<NewsResponse?> getNewsSourceId(String sourceId) async {
-   var response= await apimanger.getNewsBySourceId(sourceId);
-   return response; 
-}
+    var response = await apimanger.getNewsBySourceId(sourceId);
+    return response;
+  }
 }

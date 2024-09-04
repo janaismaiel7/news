@@ -7,6 +7,7 @@ import 'package:news/Home/news/newIteam.dart';
 import 'package:news/Home/news/newsWidgetViewModel.dart';
 import 'package:news/api/apiManger.dart';
 import 'package:news/appColors.dart';
+import 'package:news/di/di_Impl.dart';
 import 'package:news/model/news_response/article.dart';
 import 'package:news/model/news_response/news_response.dart';
 import 'package:news/model/source_response/source.dart';
@@ -23,7 +24,7 @@ class Newswidget extends StatefulWidget {
 
 class _NewswidgetState extends State<Newswidget> {
   // Newswidgetviewmodel viewmodel =Newswidgetviewmodel();
-  Newswidgetcubitviewmodel viewmodel = Newswidgetcubitviewmodel();
+  Newswidgetcubitviewmodel viewmodel = Newswidgetcubitviewmodel(newsRepo: injectNewsReposatiry());
 
   @override
   initState() {

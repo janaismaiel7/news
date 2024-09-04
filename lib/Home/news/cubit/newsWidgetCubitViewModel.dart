@@ -7,15 +7,10 @@ import 'package:news/reposatiry/news/newsReposatiryContarct.dart';
 import 'package:news/reposatiry/news/reposatiry/newsReposatiryimpi.dart';
 
 class Newswidgetcubitviewmodel extends Cubit<Newsstates>{
- late Newsreposatirycontarct newsRepo;
-  late newsRemoteDataSource remoteDataSource;
-  late Apimanger apimanger;
+ Newsreposatirycontarct newsRepo;
+ 
 
-
-Newswidgetcubitviewmodel():super(newsLoadingState()){
-newsRepo =Newsreposatiryimpi(remoteDataSource: remoteDataSource);
-remoteDataSource =Newsremotedatsourceimpi(apimanger: apimanger);
-}
+Newswidgetcubitviewmodel({required this.newsRepo}):super(newsLoadingState());
 //hold data + handle logic
 
 void getNewsBySourceId (String sourceId)async{

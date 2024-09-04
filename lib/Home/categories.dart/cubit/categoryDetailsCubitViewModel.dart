@@ -8,19 +8,11 @@ import 'package:news/reposatiry/sources/sourceDataSource.dart';
 import 'package:news/reposatiry/sources/sourceRepoContract.dart';
 
 class Categorydetailscubitviewmodel extends Cubit<Sourcestates> {
-   late Sourcerepocontract sourcerepo;
-   late sourceRemoteDataSource remoteDataSource;
-   late sourceOfflineDataSource offlineDataSource;
-   late Apimanger apimanger;
+    Sourcerepocontract sourcerepo;
+   
  
 
- Categorydetailscubitviewmodel():super(sourceLoadingState()){
-  apimanger=Apimanger.getInstance();
-  remoteDataSource=Sourceremotedatasourceimpi(apimanger: apimanger);
-  offlineDataSource = Sourceofflinedatasourceimpl();
-  sourcerepo =Sourcereposatriyimpi(remoteDataSource : remoteDataSource, offlineDataSource: offlineDataSource);
- }
-
+ Categorydetailscubitviewmodel({required this.sourcerepo}):super(sourceLoadingState()); //constructor injection
   //hold data + handle logic
   
   void getSources(String categoryId) async {
