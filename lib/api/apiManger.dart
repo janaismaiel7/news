@@ -5,14 +5,21 @@ import 'package:news/model/news_response/news_response.dart';
 import 'package:news/model/source_response/source.dart';
 import 'package:news/model/source_response/source_response.dart';
 
-
 class Apimanger {
-  static Future<SourceResponse?> getSources(String categoryId) async {
+  Apimanger._();//private Constructor
+  static Apimanger? _instance; //object
+
+  static Apimanger getInstance(){
+    _instance?? Apimanger._();
+    return _instance!;
+  }
+Future<SourceResponse?> getSources(String categoryId) async {
     try {
       // Build the URL with the base URL and parameters
-      Uri url = Uri.https(Apiconstants.baseUrl, Apiconstants.SourceApi,
-          {'apiKey': '0fcf3512df954f2788c6953ef9b45e41',
-          'category':categoryId});
+      Uri url = Uri.https(Apiconstants.baseUrl, Apiconstants.SourceApi, {
+        'apiKey': '0fcf3512df954f2788c6953ef9b45e41',
+        'category': categoryId
+      });
 
       // Send the HTTP GET request
       var response = await http.get(url);
@@ -32,26 +39,23 @@ class Apimanger {
       return null;
     }
   }
+
   //https://newsapi.org/v2/everything?q=bitcoin&apiKey=0fcf3512df954f2788c6953ef9b45e41
-static Future<NewsResponse?> getNewsBySourceId(String sourceId) async {
-  try{
-  Uri url =Uri.https(Apiconstants.baseUrl,Apiconstants.NewsApi,{
-    'apiKey':'0fcf3512df954f2788c6953ef9b45e41',
-    'sources': sourceId
-  });
- var response=await http.get(url);
-  if(response.statusCode==200){
-return NewsResponse.fromJson(jsonDecode(response.body));
+ Future<NewsResponse?> getNewsBySourceId(String sourceId) async {
+    try {
+      Uri url = Uri.https(Apiconstants.baseUrl, Apiconstants.NewsApi,
+          {'apiKey': '0fcf3512df954f2788c6953ef9b45e41', 'sources': sourceId});
+      var response = await http.get(url);
+      if (response.statusCode == 200) {
+        return NewsResponse.fromJson(jsonDecode(response.body));
+      } else {
+        print(
+            'failed to load news response , status code :${response.statusCode}');
+        return null;
+      }
+    } catch (e) {
+      print('error :$e');
+      return null;
+    }
   }
-  else{
-    print('failed to load news response , status code :${response.statusCode}');
-    return null;
-  }
-}
-
-catch(e){
-  print('error :$e');
-  return null;
-}}
-
 }

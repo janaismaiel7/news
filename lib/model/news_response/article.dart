@@ -1,8 +1,6 @@
 import 'package:collection/collection.dart';
 import 'package:news/model/source_response/source.dart';
 
-
-
 class News {
   Source? source;
   String? author;

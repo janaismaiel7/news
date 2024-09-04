@@ -4,7 +4,6 @@ import 'package:news/appColors.dart';
 import 'package:news/model/category.dart';
 
 class Categoryiteam extends StatelessWidget {
-
   Categoryy category;
   int index;
 
@@ -23,13 +22,20 @@ class Categoryiteam extends StatelessWidget {
         ),
       ),
       child: Column(
-
-        children: [Expanded(child: Image.asset(category.imagePath,
-        height: MediaQuery.of(context).size.height*0.15,)), 
-        Text(
-          
-          category.title,style: Theme.of(context).textTheme.titleMedium?.copyWith(color: Appcolors.whiteColor),
-      )],
+        children: [
+          Expanded(
+              child: Image.asset(
+            category.imagePath,
+            height: MediaQuery.of(context).size.height * 0.15,
+          )),
+          Text(
+            category.title,
+            style: Theme.of(context)
+                .textTheme
+                .titleMedium
+                ?.copyWith(color: Appcolors.whiteColor),
+          )
+        ],
       ),
     );
   }

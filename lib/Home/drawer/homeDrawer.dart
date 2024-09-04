@@ -17,7 +17,8 @@ class _HomedrawerState extends State<Homedrawer> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: PreferredSize(
-          preferredSize: Size.fromHeight(80.0), // Height of AppBar including padding
+          preferredSize:
+              Size.fromHeight(80.0), // Height of AppBar including padding
           child: AppBar(
             title: Text(
               'News App',
@@ -31,7 +32,8 @@ class _HomedrawerState extends State<Homedrawer> {
           children: [
             InkWell(
               onTap: () {
-                widget.onSideMenuClick(Homedrawer.categories); // Pass categories identifier
+                widget.onSideMenuClick(
+                    Homedrawer.categories); // Pass categories identifier
               },
               child: Row(
                 children: [
@@ -52,10 +54,10 @@ class _HomedrawerState extends State<Homedrawer> {
                 ],
               ),
             ),
-            SizedBox(height: 20), 
+            SizedBox(height: 20),
             InkWell(
               onTap: () {
-                widget.onSideMenuClick(Homedrawer.settings); 
+                widget.onSideMenuClick(Homedrawer.settings);
               },
               child: Row(
                 children: [

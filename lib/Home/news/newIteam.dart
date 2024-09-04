@@ -31,7 +31,9 @@ class Newiteam extends StatelessWidget {
                 errorWidget: (context, url, error) => Icon(Icons.error),
               ),
             ),
-            SizedBox(height: 10,),
+            SizedBox(
+              height: 10,
+            ),
             Text(
               news.author ?? '',
               style: Theme.of(context)
@@ -40,20 +42,22 @@ class Newiteam extends StatelessWidget {
                   ?.copyWith(color: Appcolors.greyColor),
               textAlign: TextAlign.start,
             ),
-             SizedBox(height: 10,),
+            SizedBox(
+              height: 10,
+            ),
             Text(
               news.title ?? '',
               style: Theme.of(context).textTheme.titleMedium,
             ),
-             SizedBox(height: 10,),
-            Text(
-              news.publishedAt ?? '',
-              style: Theme.of(context)
-                  .textTheme
-                  .titleSmall
-                  ?.copyWith(color: Appcolors.greyColor),
-                  textAlign:TextAlign.end
+            SizedBox(
+              height: 10,
             ),
+            Text(news.publishedAt ?? '',
+                style: Theme.of(context)
+                    .textTheme
+                    .titleSmall
+                    ?.copyWith(color: Appcolors.greyColor),
+                textAlign: TextAlign.end),
           ],
         ),
       ),

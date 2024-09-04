@@ -6,27 +6,26 @@ class NewsResponse {
   String? status;
   int? totalResults;
   List<News>? articles;
-  String ?message;
+  String? message;
   String? code;
 
-  NewsResponse({this.status, this.totalResults, this.articles,this.code,this.message});
+  NewsResponse(
+      {this.status, this.totalResults, this.articles, this.code, this.message});
 
   factory NewsResponse.fromJson(Map<String, dynamic> json) => NewsResponse(
-        status: json['status'] as String?,
-        totalResults: json['totalResults'] as int?,
-        articles: (json['articles'] as List<dynamic>?)
-            ?.map((e) => News.fromJson(e as Map<String, dynamic>))
-            .toList(),
-            code: json['code'] as String?,
-        message: json['message'] as String?
-
-      );
+      status: json['status'] as String?,
+      totalResults: json['totalResults'] as int?,
+      articles: (json['articles'] as List<dynamic>?)
+          ?.map((e) => News.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      code: json['code'] as String?,
+      message: json['message'] as String?);
 
   Map<String, dynamic> toJson() => {
         'status': status,
         'totalResults': totalResults,
         'articles': articles?.map((e) => e.toJson()).toList(),
-         'message': message,
+        'message': message,
         'code': code,
       };
 
@@ -40,5 +39,9 @@ class NewsResponse {
 
   @override
   int get hashCode =>
-      status.hashCode ^ totalResults.hashCode ^ articles.hashCode ^  message.hashCode ^ code.hashCode;
+      status.hashCode ^
+      totalResults.hashCode ^
+      articles.hashCode ^
+      message.hashCode ^
+      code.hashCode;
 }

@@ -58,14 +58,14 @@ class _HomescreenState extends State<Homescreen> {
 
   void onCategoryIteamClick(Categoryy newCategory) {
     selectedCategory = newCategory;
-    selectedMenuIteam = Homedrawer.categories; 
+    selectedMenuIteam = Homedrawer.categories;
     setState(() {});
   }
 
   void onSideMenuClick(int newSIdeMEnuIteam) {
     selectedMenuIteam = newSIdeMEnuIteam;
     selectedCategory = null;
-    Navigator.pop(context); 
+    Navigator.pop(context);
     setState(() {});
   }
 }

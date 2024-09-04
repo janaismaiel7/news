@@ -35,9 +35,8 @@ class _TabswidgetState extends State<Tabswidget> {
                             selectedIndex == widget.sourceList.indexOf(source),
                         source: source))
                     .toList()),
-
-                    Expanded(child: Newswidget(source: widget.sourceList[selectedIndex]))
-          
+            Expanded(
+                child: Newswidget(source: widget.sourceList[selectedIndex]))
           ],
         ));
   }

@@ -1,11 +1,19 @@
+
 import 'package:flutter/material.dart';
-import 'package:news/Home/homeScreen.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:hive/hive.dart';
 import 'package:news/myThemeData.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:news/myblocObserver.dart';
 import 'package:news/splashScreen.dart';
+import 'package:path_provider/path_provider.dart';
 
-void main() {
-  runApp(const MyApp());
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+   Bloc.observer = MyBlocObserver();
+   final documentDirectory = await getApplicationDocumentsDirectory();
+   Hive.init(documentDirectory.path);
+  runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
@@ -18,7 +26,7 @@ class MyApp extends StatelessWidget {
       localizationsDelegates: AppLocalizations.localizationsDelegates,
       supportedLocales: AppLocalizations.supportedLocales,
       debugShowCheckedModeBanner: false,
-      // locale: ,
+      // locale: ,  
       // theme:Mythemedata.lightTheme,
       initialRoute: Splashscreen.routeName,
       routes: {
