@@ -2,6 +2,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hive/hive.dart';
+import 'package:news/di/di.dart';
 import 'package:news/myThemeData.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:news/myblocObserver.dart';
@@ -13,6 +14,7 @@ void main() async {
    Bloc.observer = MyBlocObserver();
    final documentDirectory = await getApplicationDocumentsDirectory();
    Hive.init(documentDirectory.path);
+    configureDependencies(); 
   runApp(MyApp());
 }
 

@@ -27,7 +27,7 @@ void getNewsBySourceId(String sourceId) async{
   notifyListeners();
   var response = await newsRepo.getNewsBySourceId(sourceId);
   try{
-if(response?.status=='error'){
+if(response?.status!='ok'){
   errorMessage=response!.message;
 }
 else{

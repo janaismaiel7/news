@@ -1,4 +1,5 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:injectable/injectable.dart';
 import 'package:news/Home/categories.dart/cubit/sourceStates.dart';
 import 'package:news/api/apiManger.dart';
 import 'package:news/reposatiry/sources/dataSource/sourceOfflineDataSourceimpl.dart';
@@ -6,7 +7,7 @@ import 'package:news/reposatiry/sources/dataSource/sourceRemoteDataSourceimpi.da
 import 'package:news/reposatiry/sources/reposatiry/sourceReposatriyimpi.dart';
 import 'package:news/reposatiry/sources/sourceDataSource.dart';
 import 'package:news/reposatiry/sources/sourceRepoContract.dart';
-
+@injectable
 class Categorydetailscubitviewmodel extends Cubit<Sourcestates> {
     Sourcerepocontract sourcerepo;
    

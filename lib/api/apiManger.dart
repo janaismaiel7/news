@@ -1,18 +1,22 @@
 import 'dart:convert';
 import 'package:http/http.dart' as http;
+import 'package:injectable/injectable.dart';
 import 'package:news/api/apiConstants.dart';
 import 'package:news/model/news_response/news_response.dart';
 import 'package:news/model/source_response/source.dart';
 import 'package:news/model/source_response/source_response.dart';
 
-class Apimanger {
-  Apimanger._();//private Constructor
-  static Apimanger? _instance; //object
 
-  static Apimanger getInstance(){
-    _instance?? Apimanger._();
-    return _instance!;
-  }
+
+@singleton
+class Apimanger {
+  // Apimanger._();//private Constructor
+  // static Apimanger? _instance; //object
+
+  // static Apimanger getInstance(){
+  //   _instance?? Apimanger._();
+  //   return _instance!;
+  // }
 Future<SourceResponse?> getSources(String categoryId) async {
     try {
       // Build the URL with the base URL and parameters

@@ -6,6 +6,7 @@ import 'package:news/Home/categories.dart/cubit/sourceStates.dart';
 import 'package:news/Home/tabs/tabsWidget.dart';
 import 'package:news/api/apiManger.dart';
 import 'package:news/appColors.dart';
+import 'package:news/di/di.dart';
 import 'package:news/di/di_Impl.dart';
 import 'package:news/model/category.dart';
 import 'package:news/model/source_response/source_response.dart';
@@ -23,7 +24,8 @@ class Categorydetails extends StatefulWidget {
 
 class _CategorydetailsState extends State<Categorydetails> {
   //Categorydetailsviewmodel viewmodel = Categorydetailsviewmodel();
-  Categorydetailscubitviewmodel viewmodel = Categorydetailscubitviewmodel(sourcerepo:injectSourceReposatiry() );
+  Categorydetailscubitviewmodel viewmodel = getIt<Categorydetailscubitviewmodel>();
+
 
   @override
   void initState() {

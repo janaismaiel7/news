@@ -1,11 +1,12 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:injectable/injectable.dart';
 import 'package:news/Home/news/cubit/newsStates.dart';
 import 'package:news/api/apiManger.dart';
 import 'package:news/reposatiry/news/dataSource/newsRemoteDatSourceimpi.dart';
 import 'package:news/reposatiry/news/newsDataSource.dart';
 import 'package:news/reposatiry/news/newsReposatiryContarct.dart';
 import 'package:news/reposatiry/news/reposatiry/newsReposatiryimpi.dart';
-
+@injectable
 class Newswidgetcubitviewmodel extends Cubit<Newsstates>{
  Newsreposatirycontarct newsRepo;
  

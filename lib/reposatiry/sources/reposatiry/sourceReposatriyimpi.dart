@@ -1,8 +1,10 @@
 import 'package:connectivity_plus/connectivity_plus.dart';
+import 'package:injectable/injectable.dart';
 import 'package:news/model/source_response/source_response.dart';
 import 'package:news/reposatiry/sources/sourceDataSource.dart';
 import 'package:news/reposatiry/sources/sourceRepoContract.dart';
 
+@Injectable(as: Sourcerepocontract)
 class Sourcereposatriyimpi implements Sourcerepocontract{
 sourceRemoteDataSource remoteDataSource;
 sourceOfflineDataSource offlineDataSource;
