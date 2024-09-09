@@ -9,17 +9,36 @@ class NewsResponse {
   String? message;
   String? code;
 
-  NewsResponse(
-      {this.status, this.totalResults, this.articles, this.code, this.message});
+  NewsResponse({
+    this.status,
+    this.totalResults,
+    this.articles,
+    this.code,
+    this.message,
+  });
 
-  factory NewsResponse.fromJson(Map<String, dynamic> json) => NewsResponse(
+  factory NewsResponse.fromJson(Map<String, dynamic>? json) {
+    if (json == null) {
+   
+      return NewsResponse(
+        status: null,
+        totalResults: null,
+        articles: null,
+        code: null,
+        message: null,
+      );
+    }
+
+    return NewsResponse(
       status: json['status'] as String?,
       totalResults: json['totalResults'] as int?,
       articles: (json['articles'] as List<dynamic>?)
           ?.map((e) => News.fromJson(e as Map<String, dynamic>))
           .toList(),
       code: json['code'] as String?,
-      message: json['message'] as String?);
+      message: json['message'] as String?,
+    );
+  }
 
   Map<String, dynamic> toJson() => {
         'status': status,
@@ -28,20 +47,4 @@ class NewsResponse {
         'message': message,
         'code': code,
       };
-
-  @override
-  bool operator ==(Object other) {
-    if (identical(other, this)) return true;
-    if (other is! NewsResponse) return false;
-    final mapEquals = const DeepCollectionEquality().equals;
-    return mapEquals(other.toJson(), toJson());
-  }
-
-  @override
-  int get hashCode =>
-      status.hashCode ^
-      totalResults.hashCode ^
-      articles.hashCode ^
-      message.hashCode ^
-      code.hashCode;
 }

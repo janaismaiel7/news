@@ -22,18 +22,25 @@ class News {
     this.content,
   });
 
-  factory News.fromJson(Map<String, dynamic> json) => News(
-        source: json['source'] == null
-            ? null
-            : Source.fromJson(json['source'] as Map<String, dynamic>),
-        author: json['author'] as String?,
-        title: json['title'] as String?,
-        description: json['description'] as String?,
-        url: json['url'] as String?,
-        urlToImage: json['urlToImage'] as String?,
-        publishedAt: json['publishedAt'] as String?,
-        content: json['content'] as String?,
-      );
+  factory News.fromJson(Map<String, dynamic>? json) {
+    if (json == null) {
+      // Handle the case where json is null
+      return News();
+    }
+
+    return News(
+      source: json['source'] != null
+          ? Source.fromJson(json['source'] as Map<String, dynamic>)
+          : null,
+      author: json['author'] as String?,
+      title: json['title'] as String?,
+      description: json['description'] as String?,
+      url: json['url'] as String?,
+      urlToImage: json['urlToImage'] as String?,
+      publishedAt: json['publishedAt'] as String?,
+      content: json['content'] as String?,
+    );
+  }
 
   Map<String, dynamic> toJson() => {
         'source': source?.toJson(),
@@ -45,23 +52,4 @@ class News {
         'publishedAt': publishedAt,
         'content': content,
       };
-
-  @override
-  bool operator ==(Object other) {
-    if (identical(other, this)) return true;
-    if (other is! News) return false;
-    final mapEquals = const DeepCollectionEquality().equals;
-    return mapEquals(other.toJson(), toJson());
-  }
-
-  @override
-  int get hashCode =>
-      source.hashCode ^
-      author.hashCode ^
-      title.hashCode ^
-      description.hashCode ^
-      url.hashCode ^
-      urlToImage.hashCode ^
-      publishedAt.hashCode ^
-      content.hashCode;
 }

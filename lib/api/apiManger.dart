@@ -19,16 +19,16 @@ class Apimanger {
   // }
 Future<SourceResponse?> getSources(String categoryId) async {
     try {
-      // Build the URL with the base URL and parameters
+    
       Uri url = Uri.https(Apiconstants.baseUrl, Apiconstants.SourceApi, {
         'apiKey': '0fcf3512df954f2788c6953ef9b45e41',
         'category': categoryId
       });
 
-      // Send the HTTP GET request
+     
       var response = await http.get(url);
 
-      // Check if the response status code is 200 (OK)
+      
       if (response.statusCode == 200) {
         // Parse the JSON response and return the SourceResponse object
         return SourceResponse.fromJson(jsonDecode(response.body));
@@ -48,7 +48,8 @@ Future<SourceResponse?> getSources(String categoryId) async {
  Future<NewsResponse?> getNewsBySourceId(String sourceId) async {
     try {
       Uri url = Uri.https(Apiconstants.baseUrl, Apiconstants.NewsApi,
-          {'apiKey': '0fcf3512df954f2788c6953ef9b45e41', 'sources': sourceId});
+          {'apiKey': '0fcf3512df954f2788c6953ef9b45e41', 
+           'sources': sourceId});
       var response = await http.get(url);
       if (response.statusCode == 200) {
         return NewsResponse.fromJson(jsonDecode(response.body));

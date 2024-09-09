@@ -3,9 +3,11 @@ import 'package:news/Home/categories.dart/categoryIteam.dart';
 import 'package:news/model/category.dart';
 
 class categoryfargment extends StatelessWidget {
-  var categoriesList = Categoryy.getCategories();
-  Function onCategoryIteamClick;
+  final Function(Categoryy) onCategoryIteamClick;
+  final List<Categoryy> categoriesList = Categoryy.getCategories();
+
   categoryfargment({required this.onCategoryIteamClick});
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -14,12 +16,10 @@ class categoryfargment extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            'Pick Your Category \nof interset',
+            'Pick Your Category \nof Interest',
             style: Theme.of(context).textTheme.titleMedium,
           ),
-          SizedBox(
-            height: 20,
-          ),
+          SizedBox(height: 20),
           Expanded(
             child: GridView.builder(
               gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
@@ -31,17 +31,17 @@ class categoryfargment extends StatelessWidget {
                 return Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: InkWell(
-                    onTap: () {
-                      onCategoryIteamClick(categoriesList[index]);
-                    },
+                    onTap: () => onCategoryIteamClick(categoriesList[index]),
                     child: Categoryiteam(
-                        category: categoriesList[index], index: index),
+                      category: categoriesList[index], 
+                      index: index,
+                    ),
                   ),
                 );
               },
               itemCount: categoriesList.length,
             ),
-          )
+          ),
         ],
       ),
     );

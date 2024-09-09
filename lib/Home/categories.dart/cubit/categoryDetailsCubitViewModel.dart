@@ -7,28 +7,35 @@ import 'package:news/reposatiry/sources/dataSource/sourceRemoteDataSourceimpi.da
 import 'package:news/reposatiry/sources/reposatiry/sourceReposatriyimpi.dart';
 import 'package:news/reposatiry/sources/sourceDataSource.dart';
 import 'package:news/reposatiry/sources/sourceRepoContract.dart';
+
+
 @injectable
 class Categorydetailscubitviewmodel extends Cubit<Sourcestates> {
-    Sourcerepocontract sourcerepo;
-   
- 
+  final Sourcerepocontract sourcerepo;
 
- Categorydetailscubitviewmodel({required this.sourcerepo}):super(sourceLoadingState()); //constructor injection
-  //hold data + handle logic
-  
+  Categorydetailscubitviewmodel({required this.sourcerepo}) 
+      : super(sourceLoadingState());
+
   void getSources(String categoryId) async {
-    try {
-      emit(sourceLoadingState());
-      var response = await sourcerepo.getSources(categoryId);
-      if(response?.status!='ok'){
-        emit(sourceErrorState(errorMessage: response!.message!));
-        return ;
-      }
-      if (response?.status == 'ok') {
-        emit(sourceSuccessState(sourceList: response!.sources));
-      }
-    } catch (e) {
-      emit(sourceErrorState(errorMessage: e.toString()));
+  try {
+    emit(sourceLoadingState());
+    var response = await sourcerepo.getSources(categoryId);
+
+    if (response == null || response.status != 'ok') {
+      emit(sourceErrorState(
+        errorMessage: response?.message ?? 'Failed to fetch sources.',
+      ));
+      print('Error: ${response?.message ?? 'Failed to fetch sources.'}');
+      return;
     }
+
+    emit(sourceSuccessState(sourceList: response.sources));
+  } catch (e, stackTrace) {
+    emit(sourceErrorState(errorMessage: e.toString()));
+    print('Error: $e');
+    print('Stack trace: $stackTrace');
   }
 }
+
+}
+

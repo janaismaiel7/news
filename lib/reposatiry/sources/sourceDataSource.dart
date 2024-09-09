@@ -5,6 +5,6 @@ abstract class sourceRemoteDataSource{
 }
 abstract class sourceOfflineDataSource{
   Future <SourceResponse> getSources (String categoryId);
-  void saveSources (SourceResponse? SourceResponse,String category);
+  Future<void> saveSources (SourceResponse? SourceResponse,String category);
 }
 abstract class sourceCachingDataSource{}

@@ -14,8 +14,8 @@ import 'package:provider/provider.dart';
 
 
 class Categorydetails extends StatefulWidget {
-  //msh shart a7tag statful widget m3a el bloc 3shan a7otha f heta wahda
-  Categoryy categoryy;
+  final Categoryy categoryy;
+
   Categorydetails({required this.categoryy});
 
   @override
@@ -23,42 +23,50 @@ class Categorydetails extends StatefulWidget {
 }
 
 class _CategorydetailsState extends State<Categorydetails> {
-  //Categorydetailsviewmodel viewmodel = Categorydetailsviewmodel();
-  Categorydetailscubitviewmodel viewmodel = getIt<Categorydetailscubitviewmodel>();
-
+  late Categorydetailscubitviewmodel viewmodel;
 
   @override
   void initState() {
     super.initState();
+    viewmodel = getIt<Categorydetailscubitviewmodel>();
     viewmodel.getSources(widget.categoryy.id);
   }
 
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<Categorydetailscubitviewmodel, Sourcestates>(
-        bloc: viewmodel,
-        builder: (context, state) {
-          if (state is sourceErrorState) {
-            Column(
-              children: [
-                Text(
-                  state.errorMessage,
-                ),
-                ElevatedButton(onPressed: () {
+      bloc: viewmodel,
+      builder: (context, state) {
+        if (state is sourceErrorState) {
+          return Column(
+            children: [
+              Text(state.errorMessage),
+              ElevatedButton(
+                onPressed: () {
                   viewmodel.getSources(widget.categoryy.id);
-                }, child: Text('try again'))
-              ],
-            );
-          } else if (state is sourceSuccessState) {
+                },
+                child: Text('Try Again'),
+              ),
+            ],
+          );
+        } else if (state is sourceSuccessState) {
+          if (state.sourceList!.isNotEmpty) {
             return Tabswidget(sourceList: state.sourceList!);
+          } else {
+            Center(child: Text('No sources available.'));
           }
+        }
 
-          return Center(
-              child: CircularProgressIndicator(
+        return Center(
+          child: CircularProgressIndicator(
             color: Appcolors.primaryColor,
-          ));
-          // return Container();
-        });
+          ),
+        );
+      },
+    );
+  }
+}
+
 
     //ChangeNotifierProvider(
     //   create: (context) => viewmodel,
@@ -129,5 +137,4 @@ class _CategorydetailsState extends State<Categorydetails> {
     //       var sourceList = snapshot.data!.sources;
     //       return Tabswidget(sourceList: sourceList!);
     //     });
-  }
-}
+  
