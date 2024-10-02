@@ -1,4 +1,10 @@
 {
+   "arabic": "العربية",
+"english": "الانجلزية",
 "app_title": "تطبيق الاخبار",
-"sports" : "الرياضة"
+"sports" : "الرياضة",
+"category_chose" : "اختار الفئة",
+"language" : "اللغة",
+"categories" : "الفئات",
+"settings" : "الاعدادات"
 }

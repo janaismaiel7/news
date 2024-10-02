@@ -50,6 +50,9 @@ dependencies:
   injectable: ^2.4.4
   get_it: ^7.7.0
   injectable_generator: ^2.6.2
+  url_launcher: ^6.3.0
+  shared_preferences: ^2.3.2
+  provider: ^6.1.2
 
 dev_dependencies:
   flutter_test:

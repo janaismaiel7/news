@@ -19,7 +19,7 @@ class Sourcereposatriyimpi implements Sourcerepocontract {
     // Perform asynchronous connectivity check
     var checkResult = await Connectivity().checkConnectivity();
 
-    if (checkResult == ConnectivityResult.wifi || checkResult == ConnectivityResult.mobile) {
+    if (checkResult.contains(ConnectivityResult.wifi)|| checkResult.contains(ConnectivityResult.mobile)){
       try {
         var sourceResponse = await remoteDataSource.getSources(categoryId);
         if (sourceResponse != null) {

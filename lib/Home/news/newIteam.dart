@@ -1,5 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:news/Home/news/newsDetails.dart';
 import 'package:news/appColors.dart';
 import 'package:news/model/news_response/article.dart';
 
@@ -17,18 +18,25 @@ class Newiteam extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             ClipRRect(
+              
               borderRadius: BorderRadius.circular(20),
-              child: CachedNetworkImage(
-                width: double.infinity,
-                height: MediaQuery.of(context).size.height * 0.3,
-                fit: BoxFit.fill,
-                imageUrl: news.urlToImage ?? "",
-                placeholder: (context, url) => Center(
-                  child: CircularProgressIndicator(
-                    color: Appcolors.primaryColor,
+              
+              child: InkWell(
+                onTap: (){
+                  Navigator.of(context).pushNamed(Newsdetails.routeName,arguments: news);
+                },
+                child: CachedNetworkImage(
+                  width: double.infinity,
+                  height: MediaQuery.of(context).size.height * 0.3,
+                  fit: BoxFit.fill,
+                  imageUrl: news.urlToImage ?? "",
+                  placeholder: (context, url) => Center(
+                    child: CircularProgressIndicator(
+                      color: Appcolors.primaryColor,
+                    ),
                   ),
+                  errorWidget: (context, url, error) => Icon(Icons.error),
                 ),
-                errorWidget: (context, url, error) => Icon(Icons.error),
               ),
             ),
             SizedBox(
